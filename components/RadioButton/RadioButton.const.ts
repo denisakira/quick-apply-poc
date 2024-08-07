@@ -1,4 +1,4 @@
-import { IBaseFormInput } from '../../core/BaseForm.const';
+import { IBaseFormInput } from '../../core/BaseForm';
 
 export interface IRadioButton extends IBaseFormInput {
   question: string;

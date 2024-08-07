@@ -3,7 +3,7 @@ import { FormInput } from '../FormInput';
 import { IFormInput } from '../FormInput/FormInput.const';
 import { IFormContainer } from './FormContainer.const';
 import { RadioButton } from '../RadioButton';
-import { IBaseFormInput } from '../../core/BaseForm.const';
+import { IBaseFormInput } from '../../core/BaseForm';
 import { IRadioButton } from '../RadioButton/RadioButton.const';
 
 export const FormItem = ({ formInput }: { formInput: IBaseFormInput }) => {
