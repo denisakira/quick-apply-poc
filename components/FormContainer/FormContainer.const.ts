@@ -1,14 +1,13 @@
-import { IFormInput } from "../FormInput/FormInput.const";
+import { IBaseFormInput } from '../../core/BaseForm.const';
 
-export interface FormContainerHooks {
-  onInit?: Function;
-  onSubmit?: Function;
-  onChange?: Function;
-  setValue?: Function;
-  setVisibility?: Function;
+export interface IFormContainerHooks {
+  onInit?: () => unknown;
+  onSubmit?: () => unknown;
+  onChange?: () => unknown;
+  setValue?: () => unknown;
+  setVisibility?: () => unknown;
 }
 
-export interface FormContainer {
-  key: string;
-  formInputs: IFormInput[];
+export interface IFormContainer {
+  formInputs: IBaseFormInput[];
 }

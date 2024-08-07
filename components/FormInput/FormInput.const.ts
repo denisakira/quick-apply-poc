@@ -1,3 +1,5 @@
+import { IBaseFormInput } from '../../core/BaseForm.const';
+
 export enum Validation {
   Required = 'required',
   MinLength = 'minLength',
@@ -8,9 +10,8 @@ export enum Validation {
   Max = 'max',
 }
 
-export interface IFormInput {
+export interface IFormInput extends IBaseFormInput {
   name: string;
-  type: string;
   validation: Validation[];
   value: string;
 }
@@ -21,7 +22,7 @@ export interface IFormFieldLabel {
 }
 
 export interface IFormFieldHooks {
-  onInit: Function;
-  onSubmit: Function;
-  onChange: Function;
+  onInit: () => unknown;
+  onSubmit: () => unknown;
+  onChange: () => unknown;
 }
