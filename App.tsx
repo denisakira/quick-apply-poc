@@ -1,29 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { FormContainer } from './components/FormContainer';
-import { ProfileForm, QuickApplyFormNavigator } from './domain/QuickApply.const';
-import { FormNavigator } from './components/FormNavigator';
-import { RadioButton } from './components/RadioButton';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeScreen } from './screens/Home';
+import { QuickApplyScreen } from './screens/QuickApply';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Quick Apply</Text>
-
-      <FormNavigator formNavigator={new QuickApplyFormNavigator()}></FormNavigator>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="QuickApply" component={QuickApplyScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'beige',
-    padding: 40,
-  },
-  title: {
-    fontSize: 32,
-    paddingBottom: 16,
-    paddingTop: 16,
-  },
-});

@@ -6,11 +6,14 @@ import { FormContainer } from '../FormContainer';
 import { IFormContainer } from '../FormContainer/FormContainer.const';
 import { hasFormNavigatorHook, IFormNavigator } from './FormNavigator.const';
 import { CompletedApplicationFormContainer } from '../../domain/QuickApply.const';
+import { SimpleModal } from '../SimpleModal';
 
 export const FormNavigator = ({
   formNavigator,
+  navigation,
 }: {
   formNavigator: IFormNavigator;
+  navigation: any;
 }) => {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -20,17 +23,18 @@ export const FormNavigator = ({
   const [formContainers, setFormContainers] = useState<IFormContainer[]>(
     formNavigator.formContainers,
   );
-
-  const formFinished = () => {
-    console.log('Form finished');
-  };
+  const [modalVisible, setModalVisible] = useState(false);
 
   const saveForm = async (formContainer: IFormContainer) => {
-    console.log('Form saved', formContainer);
     await new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
   const isLastForm = () => index === formContainers.length - 1;
+
+  const finishForm = () => {
+    setModalVisible(true);
+    setLoading(false);
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -38,27 +42,23 @@ export const FormNavigator = ({
     await saveForm(formNavigator.formContainers[index]);
 
     if (goHome) {
-      console.log('Go home');
-      setLoading(false);
-
-      return;
+      navigation.navigate('Home');
+      return setLoading(false);
     }
 
     if (finishEarly) {
-      formFinished();
-      setLoading(false);
-
-      return;
+      return finishForm();
     }
 
     if (isLastForm()) {
       if (hasFormNavigatorHook(formNavigator)) {
         formNavigator.onFinish();
-      }
-      formFinished();
-      setLoading(false);
+        setLoading(false);
 
-      return;
+        return;
+      }
+
+      return finishForm();
     }
 
     setIndex(index + 1);
@@ -71,6 +71,10 @@ export const FormNavigator = ({
     }
 
     setIndex(index - 1);
+  };
+
+  const handleHideModal = () => {
+    setModalVisible(false);
   };
 
   useEffect(() => {
@@ -122,6 +126,11 @@ export const FormNavigator = ({
           />
         </View>
       )}
+
+      <SimpleModal
+        visible={modalVisible}
+        hideModal={() => handleHideModal()}
+      ></SimpleModal>
     </View>
   );
 };
