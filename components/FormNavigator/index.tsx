@@ -53,9 +53,7 @@ export const FormNavigator = ({
     if (isLastForm()) {
       if (hasFormNavigatorHook(formNavigator)) {
         formNavigator.onFinish();
-        setLoading(false);
-
-        return;
+        return setLoading(false);
       }
 
       return finishForm();
