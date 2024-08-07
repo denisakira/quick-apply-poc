@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { EventBus } from '../../services/EventBus';
+import { EventBus } from '../../core/EventBus';
 import { Button } from '../Button';
 import { FormContainer } from '../FormContainer';
 import { IFormContainer } from '../FormContainer/FormContainer.const';

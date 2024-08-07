@@ -10,7 +10,7 @@ import {
 } from '../components/FormNavigator/FormNavigator.const';
 import { IRadioButton } from '../components/RadioButton/RadioButton.const';
 import { BaseFormType, IBaseFormInput } from '../core/BaseForm.const';
-import { EventBus } from '../services/EventBus';
+import { EventBus } from '../core/EventBus';
 
 export class NameFormInput implements IFormInput, IFormFieldLabel {
   key = 'name';
